@@ -35,16 +35,19 @@ function ichigo_skill_1_b(keys)
 	local caster = keys.caster
 	if caster:HasModifier("bvo_ichigo_skill_3_modifier") then
 		local enemy = keys.target
+		local multiplier = self:GetSpecialValueFor("multiplier") *0.01
+		local str = caster:GetStrength()
 		local e_damage = keys.e_damage
 
 		local damageTable = {
 			victim = enemy,
 			attacker = caster,
-			damage = e_damage,
+			damage = e_damage + (str * multiplier),
 			damage_type = DAMAGE_TYPE_MAGICAL,
 		}
  
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	end
 end
 

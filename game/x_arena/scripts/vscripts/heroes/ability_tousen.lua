@@ -37,6 +37,7 @@ function bvo_tousen_skill_1_damage_non(keys)
 			damage_type = DAMAGE_TYPE_PURE,
 		}
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	end
 end
 
@@ -54,6 +55,7 @@ function bvo_tousen_skill_1_damage_hero(keys)
 			damage_type = DAMAGE_TYPE_PHYSICAL,
 		}
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	end
 end
 
@@ -72,6 +74,7 @@ function bvo_tousen_skill_3_damage(keys)
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_tousen_skill_4(keys)
@@ -149,6 +152,7 @@ function bvo_tousen_skill_4_damage(keys)
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_tousen_skill_5(keys)

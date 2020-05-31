@@ -16,6 +16,7 @@ function bvo_whitebeard_skill_5_damage(keys)
 		damage_type = DAMAGE_TYPE_PURE,
 	}
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 
 	local particle = ParticleManager:CreateParticle("particles/custom/whitebeard/whitebeard_skill_5_hitcrack.vpcf", PATTACH_WORLDORIGIN, caster)
 	ParticleManager:SetParticleControl(particle, 0, target:GetAbsOrigin())

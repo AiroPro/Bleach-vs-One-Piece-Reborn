@@ -55,9 +55,10 @@ function bvo_soifon_skill_3(keys)
 		damage = (400 + (diff * multi)) * multi,
 		damage_type = DAMAGE_TYPE_PURE,
 	}
-	ApplyDamage(damageTable)
+	ApplyDamage(damageTable) 
 	
 	caster:StartGesture(ACT_DOTA_ATTACK)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	local fxIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta_blood.vpcf", PATTACH_CUSTOMORIGIN, caster )
 	ParticleManager:SetParticleControl( fxIndex, 0, caster:GetAbsOrigin() )
 	ParticleManager:SetParticleControl( fxIndex, 1, target:GetAbsOrigin() )
@@ -77,12 +78,14 @@ function bvo_soifon_skill_5_damage(keys)
 	local target = keys.target
 	local max_miss = keys.miss
 	local ability = keys.ability
+	
+
 
 	local cooldown = ability:GetCooldown( ability:GetLevel() - 1 )
 	local cd_reduction_items = {
 		"item_doom_4",
 		"item_doom_5",
-	}
+	} 
 	for _,cdItem in pairs(cd_reduction_items) do
 	    if caster:HasItemInInventory(cdItem) then
 	    	local item = CreateItem(cdItem, caster, caster)
@@ -98,14 +101,16 @@ function bvo_soifon_skill_5_damage(keys)
 	if not target:HasModifier("bvo_soifon_skill_5_modifier") then
 		ability:ApplyDataDrivenModifier(caster, target, "bvo_soifon_skill_5_modifier", {} )
 		local agi = caster:GetAgility()
+		local mult_lvl_pvp_max = ability:GetLevelSpecialValueFor("mult_lvl_pvp_max", (ability:GetLevel() - 1))
 		local damageTable = {
 			victim = target,
 			attacker = caster,
-			damage = agi * 3,
-			damage_type = DAMAGE_TYPE_PHYSICAL,
+			damage = agi * mult_lvl_pvp_max,
+			damage_type = DAMAGE_TYPE_PURE,
 		}
 
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	elseif target:GetLevel() < caster:GetLevel() or target:GetMaxHealth() * 0.25 > target:GetHealth() then
 		target:RemoveModifierByName("bvo_soifon_skill_5_modifier")
 
@@ -122,20 +127,21 @@ function bvo_soifon_skill_5_damage(keys)
 
 		local roll = RandomInt(1, 100)
 		if roll > miss then
-			target:Kill(ability, caster)
 		end
 	else
 		target:RemoveModifierByName("bvo_soifon_skill_5_modifier")
 
 		local agi = caster:GetAgility()
+		local mult_lvl_pvp_max_1 = ability:GetLevelSpecialValueFor("mult_lvl_pvp_max_1", (ability:GetLevel() - 1))
 		local damageTable = {
 			victim = target,
 			attacker = caster,
-			damage = agi * 20,
-			damage_type = DAMAGE_TYPE_PHYSICAL,
+			damage = agi * mult_lvl_pvp_max_1,
+			damage_type = DAMAGE_TYPE_PURE, -- DAMAGE_TYPE_PURE
 		}
 
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	end
 end
 

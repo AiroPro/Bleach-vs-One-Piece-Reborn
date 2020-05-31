@@ -56,23 +56,32 @@ end
 function bvo_lucci_skill_1_damage(keys)
 	local caster = keys.caster
 	local target = keys.target
+	local multi = keys.multi
 	local damage = keys.damage
+
+ 
+	local agi = caster:GetAgility()
 
 	if not caster:HasModifier("bvo_lucci_skill_4_modifier") then return end
 	local damageTable = {
 		victim = target,
 		attacker = caster,
-		damage = damage,
+		damage = damage + agi * multi,
 		damage_type = DAMAGE_TYPE_MAGICAL,
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_lucci_skill_2(keys)
 	local caster = keys.caster
 	local target = keys.target
+	local multi = keys.multi
 	local damage = keys.damage
+
+ 
+	local agi = caster:GetAgility()
 
 	local targetPos = target:GetAbsOrigin()
 
@@ -89,10 +98,11 @@ function bvo_lucci_skill_2(keys)
 	local damageTable = {
 		victim = target,
 		attacker = caster,
-		damage = damage + extra_damage,
+		damage = damage + extra_damage + agi * multi,
 		damage_type = DAMAGE_TYPE_MAGICAL,
 	}
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	--AoE damage in Beast Form
 	if caster:HasModifier("bvo_lucci_skill_4_modifier") then
 		local localUnits = FindUnitsInRadius(caster:GetTeamNumber(),
@@ -110,10 +120,11 @@ function bvo_lucci_skill_2(keys)
 				local damageTable = {
 					victim = unit,
 					attacker = caster,
-					damage = damage,
+					damage = damage + agi * multi,
 					damage_type = DAMAGE_TYPE_MAGICAL,
 				}
 				ApplyDamage(damageTable)
+				SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 			end
 		end
 
@@ -136,6 +147,7 @@ function bvo_lucci_skill_3_damage(keys)
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_lucci_skill_4(keys)
@@ -166,6 +178,7 @@ function bvo_lucci_skill_5(keys)
 		local target = keys.target
 		local multi = keys.multi
 
+		local agi = caster:GetAgility()
 		local targetPos = target:GetAbsOrigin()
 
 		local multi2 = 1
@@ -181,9 +194,10 @@ function bvo_lucci_skill_5(keys)
 		local damageTable = {
 			victim = target,
 			attacker = caster,
-			damage = (2000 + (caster:GetLevel() * multi)) * multi2,
+			damage = (2000 + (agi * multi)) * multi2,
 			damage_type = DAMAGE_TYPE_PHYSICAL,
 		}
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	end)
 end

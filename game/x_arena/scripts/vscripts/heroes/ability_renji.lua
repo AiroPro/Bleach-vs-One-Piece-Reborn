@@ -40,6 +40,7 @@ function bvo_renji_skill_1_damage(keys)
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_renji_skill_2(keys)
@@ -108,6 +109,7 @@ function bvo_renji_skill_2_damage(keys)
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 
 	local damageTable2 = {
 		victim = target,
@@ -117,6 +119,7 @@ function bvo_renji_skill_2_damage(keys)
 	}
 
 	ApplyDamage(damageTable2)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_renji_skill_2_damage_self(keys)
@@ -227,6 +230,7 @@ function bvo_renji_skill_3_damage(keys)
 		}
 
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 		--particle
 		local particleName = "particles/units/heroes/hero_lina/lina_spell_light_strike_array.vpcf"
 		local particle = ParticleManager:CreateParticle(particleName, PATTACH_CUSTOMORIGIN, target)
@@ -386,6 +390,7 @@ function bvo_renji_skill_4_point_damage(keys)
 					damage_type = DAMAGE_TYPE_PHYSICAL,
 				}
 				ApplyDamage(damageTable)
+				SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 				table.insert(ability.hitList, unit)
 			end
 		end
@@ -777,4 +782,5 @@ function bvo_renji_skill_5_prodmg(keys)
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end

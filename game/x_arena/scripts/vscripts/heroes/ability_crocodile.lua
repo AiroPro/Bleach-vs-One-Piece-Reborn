@@ -44,6 +44,7 @@ function bvo_crocodile_skill_1_damage(keys)
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_crocodile_skill_2(keys)
@@ -72,6 +73,7 @@ function bvo_crocodile_skill_2_damage(caster, target, full_damage, tick, ability
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	ability:ApplyDataDrivenModifier(caster, target, "bvo_crocodile_skill_2_stun_modifier", {duration=0.1} )
 
 	if tick < 30 then
@@ -111,6 +113,7 @@ function bvo_crocodile_skill_3( keys )
 	end)
 end
 
+
 function LeapHorizonal( keys )
 	local caster = keys.target
 	local ability = keys.ability
@@ -133,17 +136,20 @@ function bvo_crocodile_skill_3_damage( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local damage = keys.damage
+	local multi = keys.multi
 
 	local damage_tick = (damage + (caster:GetLevel() * 5)) / 4
+	local damage_multi = caster:GetStrength() * multi
 
 	local damageTable = {
 		victim = target,
 		attacker = caster,
-		damage = damage_tick,
+		damage = damage_tick + damage_multi,
 		damage_type = DAMAGE_TYPE_PURE,
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_crocodile_skill_4_damage(keys)
@@ -164,6 +170,7 @@ function bvo_crocodile_skill_4_damage(keys)
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_crocodile_skill_4_damage_aoe(keys)
@@ -184,18 +191,19 @@ function bvo_crocodile_skill_4_damage_aoe(keys)
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_crocodile_skill_5(keys)
     local caster = keys.caster
     local ability = keys.ability
-    local health_damage = ability:GetLevelSpecialValueFor("health_damage", ability:GetLevel() - 1 )
+    local Str_damage = ability:GetLevelSpecialValueFor("Str_damage", ability:GetLevel() - 1 ) * 0.01
 
-    local max = caster:GetMaxHealth()
-    local max_damage = max * 0.37
+    local max = caster:GetStrength()
+    local max_damage = max * Str_damage
 	
     bvo_crocodile_skill_5_damage_aoe(caster, max_damage, 0)
-end
+end --
 
 function bvo_crocodile_skill_5_damage_aoe(caster, damage, wave)
     wave = wave + 1
@@ -220,6 +228,7 @@ function bvo_crocodile_skill_5_damage_aoe(caster, damage, wave)
 		}
 
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	end
 	--particle
 	local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_undying/undying_decay.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)

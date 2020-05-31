@@ -12,10 +12,12 @@ function bvo_enel_skill_4_melee(keys)
 	}
 
 	ApplyDamage(damageTable)
-
+	
+	
 	local particleName = "particles/econ/items/sven/sven_warcry_ti5/sven_warcry_cast_arc_lightning.vpcf"
 	ParticleManager:CreateParticle(particleName, PATTACH_ABSORIGIN, attacker)
 	attacker:EmitSound("Hero_Zuus.ArcLightning.Cast")
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_enel_skill_4_cast(keys)
@@ -39,6 +41,7 @@ function bvo_enel_skill_4_cast(keys)
 	local particleName = "particles/econ/items/sven/sven_warcry_ti5/sven_warcry_cast_arc_lightning.vpcf"
 	ParticleManager:CreateParticle(particleName, PATTACH_ABSORIGIN, target)
 	target:EmitSound("Hero_Zuus.ArcLightning.Cast")
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_enel_skill_4_apply(keys)

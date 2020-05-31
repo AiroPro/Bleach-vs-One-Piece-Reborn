@@ -20,6 +20,7 @@ function bvo_brook_skill_1_damage(keys)
 		damage_type = DAMAGE_TYPE_PURE,
 	}
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_brook_skill_2_damage(keys)
@@ -34,8 +35,8 @@ function bvo_brook_skill_2_damage(keys)
 		damage = multi * caster:GetAgility() + 360,
 		damage_type = DAMAGE_TYPE_PHYSICAL,
 	}
-
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_brook_skill_2_dash( keys )

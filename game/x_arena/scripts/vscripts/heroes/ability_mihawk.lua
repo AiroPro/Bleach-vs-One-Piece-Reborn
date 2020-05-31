@@ -17,7 +17,7 @@ function bvo_mihawk_skill_1_decrease_stack( keys )
 	local modifierName = "bvo_mihawk_skill_1_modifier"
 	local current_stack = caster:GetModifierStackCount( modifierName, ability )
 	
-	local str = caster:GetBaseStrength()
+	local str = caster:GetStrength()
 
 	local damageTable = {
 		victim = target,
@@ -32,6 +32,7 @@ function bvo_mihawk_skill_1_decrease_stack( keys )
 		caster:SetModifierStackCount( modifierName, ability, current_stack - 1 )
 	else
 		caster:RemoveModifierByName( modifierName )
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	end
 end
 
@@ -126,4 +127,5 @@ function bvo_mihawk_skill_4_damage(keys)
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end

@@ -72,6 +72,7 @@ function bvo_ishida_skill_1_damage(keys)
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_ishida_skill_1(keys)
@@ -167,6 +168,7 @@ function bvo_ishida_skill_2_rain(caster, arrows, origin, abl)
 		ApplyDamage(damageTable)
 
 		abl:ApplyDataDrivenModifier(caster, unit, "bvo_ishida_skill_2_stun", nil)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	end
 
 	if arrows > 0 then
@@ -224,6 +226,7 @@ function bvo_ishida_skill_4(keys)
 			local particleName = "particles/units/heroes/hero_disruptor/disruptor_thunder_strike_bolt.vpcf"
 			local particle = ParticleManager:CreateParticle(particleName, PATTACH_ABSORIGIN, unit)
 			ParticleManager:SetParticleControl(particle, 2, unit:GetAbsOrigin())
+			SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 		end
 		dummy:EmitSound("Hero_Disruptor.ThunderStrike.Cast")
 		dummy:RemoveSelf()

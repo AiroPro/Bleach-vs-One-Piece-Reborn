@@ -16,6 +16,7 @@ function bvo_sanji_skill_1(keys)
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	--
 	local difference = caster:GetAbsOrigin() - target:GetAbsOrigin()
 	target.leap_direction = -difference:Normalized()
@@ -84,6 +85,7 @@ function bvo_sanji_skill_2(keys)
 				damage_type = DAMAGE_TYPE_PHYSICAL,
 			}
 			ApplyDamage(damageTable)
+			SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 			ability:ApplyDataDrivenModifier(caster, target, "bvo_sanji_skill_2_stun_modifier", {duration=0.15} )
 			return 0.15
 		else
@@ -199,11 +201,12 @@ function bvo_sanji_skill_4_damage(keys)
 	local damageTable = {
 		victim = target,
 		attacker = caster,
-		damage = 500 + caster:GetAgility() * 12,
+		damage = 500 + caster:GetAgility() * 8,
 		damage_type = DAMAGE_TYPE_PHYSICAL,
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 
 	table.insert(ability.hitList, target)
 end
@@ -245,6 +248,7 @@ function KnockbackTarget3( keys )
 				damage_type = DAMAGE_TYPE_PHYSICAL,
 			}
 			ApplyDamage(damageTable)
+			SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 			--
 			local particleName = "particles/units/heroes/hero_lina/lina_spell_light_strike_array_explosion.vpcf"
 			ParticleManager:CreateParticle(particleName, PATTACH_ABSORIGIN_FOLLOW, caster)
@@ -262,6 +266,7 @@ function KnockbackTarget3( keys )
 			damage_type = DAMAGE_TYPE_PHYSICAL,
 		}
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 		--
 		local particleName = "particles/units/heroes/hero_lina/lina_spell_light_strike_array_explosion.vpcf"
 		ParticleManager:CreateParticle(particleName, PATTACH_ABSORIGIN_FOLLOW, caster)
@@ -275,15 +280,17 @@ function bvo_sanji_skill_5_damage(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
+	local agi = caster:GetAgility()
 	local multi = ability:GetLevelSpecialValueFor("multi", ability:GetLevel() - 1 )
 	local ability_2nd = caster:FindAbilityByName("bvo_sanji_skill_3")
 
 	local damageTable = {
 		victim = target,
 		attacker = caster,
-		damage = ( ability_2nd:GetLevel() * multi * caster:GetLevel() ) * 0.1,
+		damage = ( multi * agi) * 0.1,
 		damage_type = DAMAGE_TYPE_PHYSICAL,
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end

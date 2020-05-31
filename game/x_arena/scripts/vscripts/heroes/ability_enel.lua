@@ -21,6 +21,7 @@ function enel_skill_2(keys)
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function enel_skill_3(keys)
@@ -43,4 +44,5 @@ function enel_skill_3(keys)
 
 	local particleName = "particles/econ/items/sven/sven_warcry_ti5/sven_warcry_cast_arc_lightning.vpcf"
 	ParticleManager:CreateParticle(particleName, PATTACH_ABSORIGIN, target)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end

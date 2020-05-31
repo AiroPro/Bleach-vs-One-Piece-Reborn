@@ -99,6 +99,7 @@ function bvo_nami_skill_0_damage(keys)
 		damage_type = DAMAGE_TYPE_MAGICAL,
 	}
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_nami_skill_1(keys)
@@ -150,6 +151,26 @@ function bvo_nami_skill_1(keys)
 		end)
 	end
 end
+
+function bvo_nami_skill_1_dmg(keys)
+    local caster = keys.caster
+    local target = keys.target
+    local multi = keys.multi
+
+ 
+	local agi = caster:GetIntellect()
+
+	local damageTable = {
+		victim = target,
+		attacker = caster,
+		damage = agi * multi,
+		damage_type = DAMAGE_TYPE_MAGICAL,
+	}
+
+	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
+end
+
 
 function bvo_nami_skill_2(keys)
 	local caster = keys.caster
@@ -231,6 +252,7 @@ function bvo_nami_skill_2_damage(keys)
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	--
 	local particleName = "particles/econ/items/sven/sven_warcry_ti5/sven_warcry_cast_arc_lightning.vpcf"
 	ParticleManager:CreateParticle(particleName, PATTACH_ABSORIGIN, target)
@@ -391,6 +413,7 @@ function bvo_nami_skill_4_damage(keys)
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_nami_skill_5(keys)
@@ -429,4 +452,5 @@ function bvo_nami_skill_5_damage(keys)
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end

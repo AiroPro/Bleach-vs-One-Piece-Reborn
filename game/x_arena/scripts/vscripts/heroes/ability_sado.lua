@@ -1,5 +1,24 @@
 require('timers')
 
+function bvo_sado_skill_1(keys)
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local multi = keys.multi
+	local str = caster:GetStrength()
+
+	local damageTable = {
+		victim = target,
+		attacker = caster,
+		damage = multi * str,
+		damage_type = DAMAGE_TYPE_PHYSICAL,
+	}
+
+	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
+end
+
+
 function bvo_sado_skill_2(keys)
 	local caster = keys.caster
 	local attacker = keys.attacker
@@ -54,6 +73,7 @@ function bvo_sado_skill_3( keys )
 					damage_type = DAMAGE_TYPE_PURE,
 				}
 				ApplyDamage(damageTable2)
+				SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 
 				ability:ApplyDataDrivenModifier(caster, target, "bvo_sado_skill_3_stun_modifier", {duration=1.25})
 			end
@@ -64,16 +84,19 @@ end
 function bvo_sado_skill_3_damage( keys )
 	local caster = keys.caster
 	local target = keys.target
+	local str = caster:GetStrength()
+	local multi = keys.multi
 	local ability = keys.ability
 	local damage = ability:GetLevelSpecialValueFor("damage", ability:GetLevel() - 1 )
 
 	local damageTable = {
 		victim = target,
 		attacker = caster,
-		damage = damage,
+		damage = damage + multi * str,
 		damage_type = DAMAGE_TYPE_PHYSICAL,
 	}
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	ability:ApplyDataDrivenModifier(caster, target, "bvo_sado_skill_3_stun_modifier", {duration=1.25})
 
 	if caster:HasModifier("bvo_sado_skill_4_modifier") then
@@ -84,6 +107,7 @@ function bvo_sado_skill_3_damage( keys )
 			damage_type = DAMAGE_TYPE_PURE,
 		}
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	end
 end
 
@@ -150,6 +174,7 @@ function KnockbackTarget( keys )
 				damage_type = DAMAGE_TYPE_PHYSICAL,
 			}
 			ApplyDamage(damageTable)
+			SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 
 			local particleName = "particles/econ/items/brewmaster/brewmaster_offhand_elixir/brewmaster_thunder_clap_elixir.vpcf"
 			local particle = ParticleManager:CreateParticle(particleName, PATTACH_ABSORIGIN_FOLLOW, caster)
@@ -192,4 +217,5 @@ function bvo_sado_skill_5_damage(keys)
 		damage_type = DAMAGE_TYPE_PHYSICAL,
 	}
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end

@@ -281,6 +281,7 @@ function ExorcismPhysics( event )
 						damage_table.damage = spirit_damage
 
 						ApplyDamage(damage_table)
+						SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 						-- Calculate how much physical damage was dealt
 						local targetArmor = unit.current_target:GetPhysicalArmorValue(false)
 						local damageReduction = ((0.06 * targetArmor) / (1 + 0.06 * targetArmor))
@@ -424,6 +425,7 @@ function ExorcismDeath( event )
 			}
 
 			ApplyDamage(damageTable)
+			SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 		end
 
 		local dummy = CreateUnitByName("npc_dummy_unit", point, false, nil, nil, caster:GetTeam())
@@ -606,15 +608,17 @@ function bvo_byakuya_skill_5_damage(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local multi = keys.multi
+	local agi = caster:GetAgility()
 
 	local damageTable = {
 		victim = target,
 		attacker = caster,
-		damage = multi * caster:GetLevel() + 3000,
+		damage = ( multi * agi),
 		damage_type = DAMAGE_TYPE_PHYSICAL,
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 --[[Moves the caster on the horizontal axis until it has traveled the distance]]
@@ -652,6 +656,8 @@ function bvo_byakuya_skill_5(keys)
 	if caster:HasModifier("bvo_byakuya_skill_4_modifier") then
 		local abl = caster:FindAbilityByName("bvo_byakuya_skill_4")
 		local point = abl.castPos
+		local multi = keys.multi
+		local agi = caster:GetAgility()
 		caster:RemoveModifierByName("bvo_byakuya_skill_4_modifier")
 		--damage
 		localUnits = FindUnitsInRadius(caster:GetTeamNumber(),
@@ -668,10 +674,11 @@ function bvo_byakuya_skill_5(keys)
 			local damageTable = {
 				victim = unit,
 				attacker = caster,
-				damage = abl:GetLevelSpecialValueFor( "damage", abl:GetLevel() - 1 ),
+				damage = ( multi * agi) + abl:GetLevelSpecialValueFor( "damage", abl:GetLevel() - 1 ),
 				damage_type = DAMAGE_TYPE_MAGICAL,
 			}
 			ApplyDamage(damageTable)
+			SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 		end
 
 		local dummy = CreateUnitByName("npc_dummy_unit", point, false, nil, nil, caster:GetTeam())

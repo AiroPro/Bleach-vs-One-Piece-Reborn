@@ -9,7 +9,7 @@ function bvo_usopp_skill_0_stop(keys)
 	caster.bvo_usopp_skill_0_hp_old = caster:GetHealth()
 	caster.bvo_usopp_skill_0_hp = caster:GetHealth()
 
-	caster:Stop()
+	caster:Stop() 
 end
 
 function bvo_usopp_skill_0_switch(keys)
@@ -51,6 +51,7 @@ function bvo_usopp_skill_0_use(keys)
 	}
 
 	ApplyDamage(damageTable2)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 
 	caster:SwapAbilities("bvo_usopp_skill_0", "bvo_usopp_skill_0_use", true, true)
 	caster:FindAbilityByName("bvo_usopp_skill_0_use"):SetHidden(true)
@@ -158,6 +159,7 @@ function bvo_usopp_skill_2(keys)
 		damage_type = DAMAGE_TYPE_PHYSICAL,
 	}
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_usopp_skill_3(keys)
@@ -203,6 +205,9 @@ function bvo_usopp_skill_3_hit(keys)
 	local caster = keys.caster
     local ability = keys.ability
     local damage = keys.damage
+	local multi = keys.multi
+	
+	local agi = caster:GetAgility()
 
     localUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 	            ability.point,
@@ -220,11 +225,12 @@ function bvo_usopp_skill_3_hit(keys)
 		local damageTable = {
 			victim = unit,
 			attacker = caster,
-			damage = damage / 6,
+			damage = multi * agi,
 			damage_type = DAMAGE_TYPE_PURE,
 		}
 
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	end
 	--
 	local dummy = CreateUnitByName("npc_dummy_unit", ability.point, false, nil, nil, caster:GetTeam())
@@ -256,15 +262,17 @@ function bvo_usopp_skill_4_hit(keys)
 	local caster = keys.caster
 	local target = keys.target
     local multi = keys.multi
+	local agi = caster:GetAgility()
 
   	local damageTable = {
 		victim = target,
 		attacker = caster,
-		damage = (caster:GetAgility() * multi) + 500,
+		damage = (agi * multi) + 500,
 		damage_type = DAMAGE_TYPE_PHYSICAL,
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_usopp_skill_5_sound( keys )
@@ -338,6 +346,7 @@ function bvo_usopp_skill_5_hit(keys)
 		}
 
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	end
     --
     local castABL = caster:FindAbilityByName("bvo_usopp_skill_5_extra")
@@ -404,4 +413,5 @@ function bvo_usopp_skill_5_damage(keys)
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end

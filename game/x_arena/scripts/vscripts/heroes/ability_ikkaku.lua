@@ -21,6 +21,7 @@ function bvo_ikkaku_skill_1(keys)
 		damage_type = DAMAGE_TYPE_PHYSICAL,
 	}
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	
 	local localUnits = FindUnitsInRadius(caster:GetTeamNumber(),
 		            caster:GetAbsOrigin(),
@@ -42,6 +43,7 @@ function bvo_ikkaku_skill_1(keys)
 			}
 
 			ApplyDamage(damageTable)
+			SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 		end
 	end
 
@@ -96,6 +98,7 @@ function bvo_ikkaku_skill_2_damage( keys )
 		}
 
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	end
 end
 
@@ -198,6 +201,7 @@ function bvo_ikkaku_skill_5_damage(keys)
 		damage_type = DAMAGE_TYPE_PHYSICAL,
 	}
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function LeapHorizonal( keys )

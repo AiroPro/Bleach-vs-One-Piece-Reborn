@@ -34,6 +34,7 @@ function bvo_megumin_skill_0( keys )
 				damage_type = DAMAGE_TYPE_MAGICAL,
 			}
 			ApplyDamage(damageTable)
+			SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 		end
 
 	end
@@ -42,7 +43,9 @@ end
 function bvo_megumin_skill_1( keys )
 	local caster = keys.caster
 	local ability = keys.ability
+	local multi = keys.multi
 	local point = keys.target_points[1]
+	local Int = caster:GetIntellect()
 	local radius = ability:GetLevelSpecialValueFor("radius", ability:GetLevel() - 1 )
 	local damage = ability:GetLevelSpecialValueFor("damage", ability:GetLevel() - 1 )
 
@@ -60,10 +63,11 @@ function bvo_megumin_skill_1( keys )
 		local damageTable = {
 			victim = unit,
 			attacker = caster,
-			damage = damage,
+			damage = damage + Int * multi,
 			damage_type = DAMAGE_TYPE_MAGICAL,
 		}
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 		ability:ApplyDataDrivenModifier(caster, unit, "bvo_megumin_skill_1_modifier", {duration=0.1})
 	end
 
@@ -83,6 +87,7 @@ function bvo_megumin_skill_3( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local target = keys.target
+	local mult_part = ability:GetLevelSpecialValueFor("mult_part", ability:GetLevel() - 1 )
 
 	caster:EmitSound("Hero_ObsidianDestroyer.ArcaneOrb")
 	local projTable = {
@@ -93,7 +98,32 @@ function bvo_megumin_skill_3( keys )
         bDodgeable = true,
         bProvidesVision = false,
         vSpawnOrigin = caster:GetAbsOrigin(),
-        iMoveSpeed = 1000,
+        iMoveSpeed = 1000 + (mult_part *  caster:GetLevel()),
+        iVisionRadius = 0,
+        iVisionTeamNumber = caster:GetTeamNumber(),
+        iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1
+    }
+    ProjectileManager:CreateTrackingProjectile(projTable)
+
+    bvo_megumin_skill_4_refresh(ability, caster)
+end
+
+function bvo_megumin_skill_2( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+	local mult_part = ability:GetLevelSpecialValueFor("mult_part", ability:GetLevel() - 1 )
+
+	caster:EmitSound("Hero_ObsidianDestroyer.ArcaneOrb")
+	local projTable = {
+        EffectName = "particles/custom/megumin/skill_3_projectile/megumin_skill_3_projectile.vpcf",
+        Ability = ability,
+        Target = target,
+        Source = caster,
+        bDodgeable = true,
+        bProvidesVision = false,
+        vSpawnOrigin = caster:GetAbsOrigin(),
+        iMoveSpeed = 1800 + (mult_part *  caster:GetLevel()),
         iVisionRadius = 0,
         iVisionTeamNumber = caster:GetTeamNumber(),
         iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1
@@ -138,6 +168,7 @@ function bvo_megumin_skill_3_hit( keys )
 			damage_type = DAMAGE_TYPE_MAGICAL,
 		}
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 		ability:ApplyDataDrivenModifier(caster, unit, "bvo_megumin_skill_3_stun_modifier", {duration=1.5})
 	end
 end
@@ -234,6 +265,8 @@ function bvo_megumin_skill_5( keys )
 					damage_type = DAMAGE_TYPE_PURE,
 				}
 				ApplyDamage(damageTable)
+				ability:ApplyDataDrivenModifier(caster, unit, "slow_move_attach_Modifier", {duration=2.5})
+				SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 				ability:ApplyDataDrivenModifier(caster, unit, "bvo_megumin_skill_5_stun_modifier", {duration=1.5})
 			end
 

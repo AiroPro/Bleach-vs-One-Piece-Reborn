@@ -14,11 +14,13 @@ function bvo_mihawk_skill_2(keys)
 	target:EmitSound("Hero_PhantomAssassin.CoupDeGrace")
 
 	caster:MoveToTargetToAttack(target)
-	local damageTable = {
+	local damageTable = { 
 		victim = target,
 		attacker = caster,
-		damage = caster:GetBaseStrength() * multi,
+		damage = caster:GetStrength() * multi,
 		damage_type = DAMAGE_TYPE_PURE,
 	}
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
+

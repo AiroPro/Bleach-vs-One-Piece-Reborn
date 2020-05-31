@@ -18,6 +18,7 @@ function bvo_zoro_skill_0(keys)
 		damage_type = DAMAGE_TYPE_PHYSICAL,
 	}
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_zoro_skill_2(keys)
@@ -114,6 +115,7 @@ function bvo_zoro_skill_2_damage(keys)
 		damage_type = DAMAGE_TYPE_MAGICAL,
 	}
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_zoro_skill_3(keys)
@@ -172,9 +174,10 @@ function bvo_zoro_skill_3_damage(keys)
 		damage_type = DAMAGE_TYPE_PHYSICAL,
 	}
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
---[[Moves the caster on the horizontal axis until it has traveled the distance]]
+--[[Перемещает заклинателя по горизонтальной оси, пока он не пройдет расстояние]]
 function LeapHorizonal( keys )
 	local caster = keys.target
 	local ability = keys.ability
@@ -235,11 +238,12 @@ function bvo_zoro_skill_4_damage(keys)
 	local damageTable = {
 		victim = target,
 		attacker = caster,
-		damage = str * 12,
+		damage = str * 8,
 		damage_type = DAMAGE_TYPE_PHYSICAL,
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_zero_skill_5(keys)
@@ -267,5 +271,6 @@ function bvo_zero_skill_5(keys)
 			damage_type = DAMAGE_TYPE_PHYSICAL,
 		}
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	end)
 end

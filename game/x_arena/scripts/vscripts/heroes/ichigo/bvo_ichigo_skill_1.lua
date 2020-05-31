@@ -62,7 +62,9 @@ function bvo_ichigo_skill_1:OnProjectileHit( hTarget, vLocation )
 	if hTarget == nil then return end
 
 	local caster = self:GetCaster()
-	local damage = self:GetSpecialValueFor("damage")
+	local damagr = self:GetSpecialValueFor("damage")
+	local multiplier = self:GetSpecialValueFor("multiplier") *0.01
+	local str = caster:GetStrength()
 
 	if caster:HasModifier("bvo_ichigo_skill_3_modifier") then
 		damage = self:GetSpecialValueFor("damage_bankai")
@@ -71,10 +73,11 @@ function bvo_ichigo_skill_1:OnProjectileHit( hTarget, vLocation )
 	hTarget:EmitSound("Hero_Magnataur.ShockWave.Target")
 
 	local damageTable = {
-		victim = hTarget,
+		victim = hTarget,  
 		attacker = caster,
-		damage = damage,
+		damage = damagr + (str * multiplier),
 		damage_type = DAMAGE_TYPE_MAGICAL,
 	}
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end

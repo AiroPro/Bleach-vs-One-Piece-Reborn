@@ -43,6 +43,7 @@ function bvo_megumin_skill_3_cast( keys )
 			damage_type = DAMAGE_TYPE_MAGICAL,
 		}
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 		ability:ApplyDataDrivenModifier(caster, unit, "bvo_megumin_skill_1_modifier", {duration=0.1})
 	end
 

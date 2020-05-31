@@ -62,6 +62,7 @@ function yamamoto_skill_3 (keys)
 			damage_type = DAMAGE_TYPE_PHYSICAL,
 		}
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	end
 
 	caster:StartGesture(ACT_DOTA_ATTACK)
@@ -114,6 +115,7 @@ function yamamoto_skill_3_jump (caster, jumps, target)
 					damage_type = DAMAGE_TYPE_PHYSICAL,
 				}
 				ApplyDamage(damageTable)
+				SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 			end
 
 			caster:StartGesture(ACT_DOTA_ATTACK)
@@ -250,6 +252,7 @@ function yamamoto_skill_4_burn_damage(keys)
 			damage_type = DAMAGE_TYPE_MAGICAL,
 		}
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	end
 end
 
@@ -267,6 +270,7 @@ function yamamoto_skill_4_pro_damage(keys)
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function yamamoto_skill_5(keys)
@@ -290,10 +294,11 @@ function yamamoto_skill_5(keys)
 		}
 		ApplyDamage(damageTable)
 		
-		caster:StartGesture(ACT_DOTA_ATTACK)
+		caster:StartGesture(ACT_DOTA_ATTACK)      
 		caster:EmitSound("Hero_DoomBringer.Attack")
 		local fxIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta_blood.vpcf", PATTACH_CUSTOMORIGIN, caster )
 		ParticleManager:SetParticleControl( fxIndex, 0, caster:GetAbsOrigin() )
 		ParticleManager:SetParticleControl( fxIndex, 1, target:GetAbsOrigin() )
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	end)
 end

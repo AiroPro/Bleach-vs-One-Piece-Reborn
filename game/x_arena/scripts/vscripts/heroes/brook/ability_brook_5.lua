@@ -57,13 +57,14 @@ function bvo_brook_skill_5_damage(keys)
 	local ability = keys.ability
 	local target = keys.target
 	local damage = ability:GetLevelSpecialValueFor("damage", ability:GetLevel() - 1 )
-	local multi = ability:GetLevelSpecialValueFor("hero_multi", ability:GetLevel() - 1 )
+	local multi = ability:GetLevelSpecialValueFor("agi_multi", ability:GetLevel() - 1 )
 
 	local damageTable = {
 		victim = target,
 		attacker = caster,
-		damage = caster:GetLevel() * multi + damage,
+		damage = caster:GetAgility() * multi + damage,
 		damage_type = DAMAGE_TYPE_PHYSICAL,
 	}
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end

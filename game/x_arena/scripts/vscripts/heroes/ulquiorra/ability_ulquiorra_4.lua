@@ -23,6 +23,8 @@ end
 function bvo_ulquiorra_skill_4_tick( keys )
 	local caster = keys.caster
 	local ability = keys.ability
+	local multi = keys.multi
+	local agi = caster:GetAgility()
     local damage = ability:GetLevelSpecialValueFor("damage_tick", (ability:GetLevel() - 1))
     local width = ability:GetLevelSpecialValueFor("width", (ability:GetLevel() - 1))
 
@@ -39,10 +41,11 @@ function bvo_ulquiorra_skill_4_tick( keys )
 	   local damageTable = {
 			victim = unit,
 			attacker = caster,
-			damage = damage / 4,
+			damage = damage / 4 + multi * agi,
 			damage_type = DAMAGE_TYPE_PURE,
 		}
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 
 		ability:ApplyDataDrivenModifier(caster, unit, "bvo_ulquiorra_skill_4_slow_modifier", {duration=0.25})
 	end

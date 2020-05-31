@@ -87,6 +87,7 @@ function bvo_rukia_skill_2_damage(keys)
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_rukia_skill_3_reset( keys )
@@ -215,6 +216,7 @@ function bvo_rukia_skill_5_hit(keys)
 		}
 
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 		local particleName = "particles/units/heroes/hero_lich/lich_frost_nova.vpcf"
 		local particle = ParticleManager:CreateParticle(particleName, PATTACH_ABSORIGIN_FOLLOW, target)
 		target:EmitSound("Hero_Lich.ChainFrostImpact.Hero")

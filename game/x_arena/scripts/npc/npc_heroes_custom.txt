@@ -33,8 +33,8 @@
 		"StatusHealth"				"1000"
 		"StatusMana"				"0"
 		"MovementSpeed"				"400"
-		"AttackRate"				"1.500000"
-		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
+		"AttackRate"				"1.200000"
+		"AttrёibutePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
 
 		"AttributeBaseStrength"		"50"									// Base strength
 		"AttributeStrengthGain"		"5"
@@ -88,7 +88,7 @@
 		"StatusHealth"				"210"
 		"StatusMana"				"40"
 		"MovementSpeed"				"290"
-		"AttackRate"				"1.500000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"		"35"									// Base strength
@@ -105,7 +105,7 @@
 	{
 		"override_hero"				"npc_dota_hero_zuus"
 		"Model"		"models/hero_enel2/hero_enel2_base.vmdl"
-		"DisableWearables" "1"
+		"DisableWearables" "1"		
 		"ModelScale" "0.95"
 		"VoiceFile"		""
 		"HealthBarOffset"		"200"
@@ -144,7 +144,7 @@
 		"StatusHealth"				"400"
 		"StatusMana"				"10"
 		"MovementSpeed"				"320"
-		"AttackRate"				"1.400000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_INTELLECT"
 		"AttributeBaseStrength"		"20"									// Base strength
@@ -198,7 +198,7 @@
 		"StatusHealth"				"400"
 		"StatusMana"				"40"
 		"MovementSpeed"				"310"
-		"AttackRate"				"1.240000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
 		"AttributeBaseStrength"		"30"									// Base strength
@@ -252,7 +252,7 @@
 		"StatusHealth"				"210"
 		"StatusMana"				"40"
 		"MovementSpeed"				"290"
-		"AttackRate"				"1.470000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"		"40"									// Base strength
@@ -277,7 +277,7 @@
 		// Abilities
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityLayout"				"6"
-		"Ability1"					"bvo_orihime_skill_1"				// Ability 1
+		"Ability1"					"bvo_oriheme_skill_1"				// Ability 1
 		"Ability2"					"bvo_orihime_skill_2"				// Ability 2
 		"Ability3"					"bvo_orihime_skill_3"				// Ability 3
 		"Ability4"					"bvo_orihime_skill_4"				// Ability 4
@@ -309,7 +309,7 @@
 		"StatusHealth"				"400"
 		"StatusMana"				"18"
 		"MovementSpeed"				"290"
-		"AttackRate"				"1.400000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_INTELLECT"
 		"AttributeBaseStrength"		"23"									// Base strength
@@ -365,7 +365,7 @@
 		"StatusHealth"				"400"
 		"StatusMana"				"30"
 		"MovementSpeed"				"300"
-		"AttackRate"				"1.450000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
 		"AttributeBaseStrength"		"25"									// Base strength
@@ -471,7 +471,7 @@
 		"StatusHealth"				"115"
 		"StatusMana"				"105"
 		"MovementSpeed"				"290"
-		"AttackRate"				"1.500000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"		"45"									// Base strength
@@ -577,7 +577,7 @@
 		"StatusHealth"				"210"
 		"StatusMana"				"40"
 		"MovementSpeed"				"315"
-		"AttackRate"				"1.300000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"		"30"									// Base strength
@@ -630,7 +630,7 @@
 		"StatusHealth"				"10"
 		"StatusMana"				"30"
 		"MovementSpeed"				"290"
-		"AttackRate"				"1.470000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"		"40"									// Base strength
@@ -683,7 +683,7 @@
 		"StatusHealth"				"550"
 		"StatusMana"				"40"
 		"MovementSpeed"				"340"
-		"AttackRate"				"1.250000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
 		"AttributeBaseStrength"		"25"									// Base strength
@@ -736,7 +736,7 @@
 		"StatusHealth"				"400"
 		"StatusMana"				"30"
 		"MovementSpeed"				"300"
-		"AttackRate"				"1.300000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
 		"AttributeBaseStrength"		"30"									// Base strength
@@ -789,7 +789,7 @@
 		"StatusHealth"				"300"
 		"StatusMana"				"40"
 		"MovementSpeed"				"300"
-		"AttackRate"				"1.300000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
 		"AttributeBaseStrength"		"30"									// Base strength
@@ -841,7 +841,7 @@
 		"StatusHealth"				"400"
 		"StatusMana"				"37"
 		"MovementSpeed"				"300"
-		"AttackRate"				"1.520000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
 		"AttributeBaseStrength"		"27"									// Base strength
@@ -894,7 +894,7 @@
 		"StatusHealth"				"210"
 		"StatusMana"				"40"
 		"MovementSpeed"				"290"
-		"AttackRate"				"1.500000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"		"40"									// Base strength
@@ -1001,7 +1001,7 @@
 		"StatusHealth"				"210"
 		"StatusMana"				"23"
 		"MovementSpeed"				"270"
-		"AttackRate"				"1.400000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_INTELLECT"
 		"AttributeBaseStrength"		"40"									// Base strength
@@ -1108,7 +1108,7 @@
 		"StatusHealth"				"400"
 		"StatusMana"				"35"
 		"MovementSpeed"				"320"
-		"AttackRate"				"1.400000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
 		"AttributeBaseStrength"		"25"									// Base strength
@@ -1163,7 +1163,7 @@
 		"StatusHealth"				"500"
 		"StatusMana"				"-45"
 		"MovementSpeed"				"310"
-		"AttackRate"				"1.330000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_INTELLECT"
 		"AttributeBaseStrength"		"20"									// Base strength
@@ -1267,7 +1267,7 @@
 		"StatusHealth"				"475"
 		"StatusMana"				"40"
 		"MovementSpeed"				"340"
-		"AttackRate"				"1.250000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
 		"AttributeBaseStrength"		"20"									// Base strength
@@ -1320,7 +1320,7 @@
 		"StatusHealth"				"400"
 		"StatusMana"				"35"
 		"MovementSpeed"				"320"
-		"AttackRate"				"1.250000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
 		"AttributeBaseStrength"		"25"									// Base strength
@@ -1375,7 +1375,7 @@
 		"StatusHealth"				"210"
 		"StatusMana"				"30"
 		"MovementSpeed"				"290"
-		"AttackRate"				"1.400000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_INTELLECT"
 		"AttributeBaseStrength"		"40"									// Base strength
@@ -1428,7 +1428,7 @@
 		"StatusHealth"				"400"
 		"StatusMana"				"35"
 		"MovementSpeed"				"320"
-		"AttackRate"				"1.260000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
 		"AttributeBaseStrength"		"30"									// Base strength
@@ -1483,7 +1483,7 @@
 		"StatusHealth"				"400"
 		"StatusMana"				"35"
 		"MovementSpeed"				"290"
-		"AttackRate"				"1.400000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_INTELLECT"
 		"AttributeBaseStrength"		"20"									// Base strength
@@ -1537,7 +1537,7 @@
 		"StatusHealth"				"210"
 		"StatusMana"				"35"
 		"MovementSpeed"				"320"
-		"AttackRate"				"1.350000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"		"40"									// Base strength
@@ -1643,7 +1643,7 @@
 		"StatusHealth"				"210"
 		"StatusMana"				"40"
 		"MovementSpeed"				"300"
-		"AttackRate"				"1.300000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"		"35"									// Base strength
@@ -1656,7 +1656,7 @@
 		"ArmorPhysical"				"-1"
 	}
 
-	"npc_dota_hero_sado"
+	"`_sado"
 	{
 		"override_hero"				"npc_dota_hero_slardar"
 		"Model"						"models/hero_sado/hero_sado_base.vmdl"
@@ -1695,7 +1695,7 @@
 		"StatusHealth"				"210"
 		"StatusMana"				"38"
 		"MovementSpeed"				"290"
-		"AttackRate"				"1.550000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"		"35"									// Base strength
@@ -1751,7 +1751,7 @@
 		"StatusHealth"				"400"
 		"StatusMana"				"35"
 		"MovementSpeed"				"290"
-		"AttackRate"				"1.400000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_INTELLECT"
 		"AttributeBaseStrength"		"25"									// Base strength
@@ -1804,7 +1804,7 @@
 		"StatusHealth"				"270"
 		"StatusMana"				"60"
 		"MovementSpeed"				"340"
-		"AttackRate"				"1.300000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
 		"AttributeBaseStrength"		"30"									// Base strength
@@ -1858,7 +1858,7 @@
 		"StatusHealth"				"180"
 		"StatusMana"				"60"
 		"MovementSpeed"				"320"
-		"AttackRate"				"1.300000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
 		"AttributeBaseStrength"		"30"									// Base strength
@@ -1912,7 +1912,7 @@
 		"StatusHealth"				"210"
 		"StatusMana"				"40"
 		"MovementSpeed"				"320"
-		"AttackRate"				"1.250000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
 		"AttributeBaseStrength"		"25"									// Base strength
@@ -1965,7 +1965,7 @@
 		"StatusHealth"				"460"
 		"StatusMana"				"60"
 		"MovementSpeed"				"300"
-		"AttackRate"				"1.350000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"		"40"									// Base strength
@@ -2019,7 +2019,7 @@
 		"StatusHealth"				"360"
 		"StatusMana"				"60"
 		"MovementSpeed"				"315"
-		"AttackRate"				"1.250000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
 		"AttributeBaseStrength"		"35"									// Base strength
@@ -2073,7 +2073,7 @@
 		"StatusHealth"				"360"
 		"StatusMana"				"60"
 		"MovementSpeed"				"295"
-		"AttackRate"				"1.400000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
 		"AttributeBaseStrength"		"30"									// Base strength
@@ -2127,7 +2127,7 @@
 		"StatusHealth"				"445"
 		"StatusMana"				"60"
 		"MovementSpeed"				"320"
-		"AttackRate"				"1.250000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
 		"AttributeBaseStrength"		"30"									// Base strength
@@ -2181,7 +2181,7 @@
 		"StatusHealth"				"460"
 		"StatusMana"				"60"
 		"MovementSpeed"				"300"
-		"AttackRate"				"1.350000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"		"40"									// Base strength
@@ -2235,7 +2235,7 @@
 		"StatusHealth"				"410"
 		"StatusMana"				"60"
 		"MovementSpeed"				"300"
-		"AttackRate"				"1.300000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"		"50"									// Base strength
@@ -2289,7 +2289,7 @@
 		"StatusHealth"				"360"
 		"StatusMana"				"60"
 		"MovementSpeed"				"280"
-		"AttackRate"				"1.450000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_INTELLECT"
 		"AttributeBaseStrength"		"30"									// Base strength
@@ -2348,7 +2348,7 @@
 		"StatusHealth"				"360"
 		"StatusMana"				"60"
 		"MovementSpeed"				"290"
-		"AttackRate"				"1.450000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"		"40"									// Base strength
@@ -2402,7 +2402,7 @@
 		"StatusHealth"				"320"
 		"StatusMana"				"40"
 		"MovementSpeed"				"330"
-		"AttackRate"				"1.450000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"		"43"									// Base strength
@@ -2456,7 +2456,7 @@
 		"StatusHealth"				"180"
 		"StatusMana"				"60"
 		"MovementSpeed"				"320"
-		"AttackRate"				"2.600000"
+		"AttackRate"				"1.200000"
 
 		"AttributePrimary"			"DOTA_ATTRIBUTE_INTELLECT"
 		"AttributeBaseStrength"		"20"									// Base strength

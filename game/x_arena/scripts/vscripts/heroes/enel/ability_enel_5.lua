@@ -46,6 +46,7 @@ function bvo_enel_skill_5( keys )
 				local particleName = "particles/econ/items/sven/sven_warcry_ti5/sven_warcry_cast_arc_lightning.vpcf"
 				ParticleManager:CreateParticle(particleName, PATTACH_ABSORIGIN, unit)
 				unit:EmitSound("Hero_Zuus.ArcLightning.Cast")
+				SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 			end
 
 			caster:RemoveModifierByName( "bvo_enel_skill_5_hot_modifier" )

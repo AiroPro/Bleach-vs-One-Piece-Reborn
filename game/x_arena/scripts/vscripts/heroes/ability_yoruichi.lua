@@ -75,6 +75,7 @@ function bvo_yoruichi_skill_1_damage(keys)
 			damage_type = DAMAGE_TYPE_PURE,
 		}
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 		target:EmitSound("Hero_Puck.IIllusory_Orb_Damage")
 	end
 end
@@ -157,6 +158,7 @@ function KnockbackTarget( keys )
 					damage_type = DAMAGE_TYPE_PURE,
 				}
 				ApplyDamage(damageTable)
+				SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 				ability:ApplyDataDrivenModifier(owner, caster, "bvo_yoruichi_skill_2_stun2_modifier", {duration=dur} )
 				owner:EmitSound("Hero_PhantomLancer.SpiritLance.Impact")
 			end
@@ -179,6 +181,7 @@ function KnockbackTarget( keys )
 				damage_type = DAMAGE_TYPE_PURE,
 			}
 			ApplyDamage(damageTable)
+			SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 			ability:ApplyDataDrivenModifier(owner, caster, "bvo_yoruichi_skill_2_stun2_modifier", {duration=dur} )
 			owner:EmitSound("Hero_PhantomLancer.SpiritLance.Impact")
 		end
@@ -312,6 +315,7 @@ function bvo_yoruichi_skill_5(keys)
 		damage_type = DAMAGE_TYPE_PHYSICAL,
 	}
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 
 	local strike = 0
 	Timers:CreateTimer(0.05, function()
@@ -333,6 +337,7 @@ function bvo_yoruichi_skill_5(keys)
 				damage_type = DAMAGE_TYPE_PURE,
 			}
 			ApplyDamage(damageTable)
+			SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 			return 0.05
 		else
 			FindClearSpaceForUnit(caster, target:GetAbsOrigin(), false)
@@ -347,6 +352,7 @@ function bvo_yoruichi_skill_5(keys)
 				damage_type = DAMAGE_TYPE_PHYSICAL,
 			}
 			ApplyDamage(damageTable)
+			SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 
 			local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_centaur/centaur_warstomp.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 			ParticleManager:SetParticleControl(particle, 0, Vector(275, 0, 275))

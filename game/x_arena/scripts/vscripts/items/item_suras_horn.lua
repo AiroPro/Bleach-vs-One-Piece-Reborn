@@ -1,4 +1,4 @@
-function item_suras_horn_cast(keys)
+function с(keys)
 	local caster = keys.caster
 		
 	caster:EmitSound("Item.GuardianGreaves.Activate")
@@ -18,20 +18,20 @@ function item_suras_horn_void(keys)
 		local max = target:GetMaxMana()
 		local missing = max - target:GetMana()
 
-		local damageTable = {
+		local damageTable = { 
 			victim = target,
 			attacker = caster,
 			damage = missing * damage_per_mana,
-			damage_type = DAMAGE_TYPE_PURE,
+			damage_type = DAMAGE_TYPE_MAGICAL,
 		}
 		ApplyDamage(damageTable)
-		target:EmitSound("Hero_Antimage.ManaVoid")
+		target:EmitSound("Hero_Antimage.ManaVoid") 
 
 		--local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_antimage/antimage_manavoid.vpcf", PATTACH_POINT, target)
 		--ParticleManager:SetParticleControl(particle, 0, Vector(0, 0, 0) )
 		--ParticleManager:SetParticleControl(particle, 1, Vector(275, 0, 0) )
 	end
-end
+end 
 
 function item_suras_horn_burn(keys)
 	local caster = keys.caster
@@ -55,11 +55,12 @@ function item_suras_horn_burn(keys)
 			victim = target,
 			attacker = caster,
 			damage = burned_mana,
-			damage_type = DAMAGE_TYPE_PHYSICAL,
+			damage_type = DAMAGE_TYPE_PURE,
 		}
 		ApplyDamage(damageTable)
 
 		local particleName = "particles/generic_gameplay/generic_manaburn.vpcf"
 		ParticleManager:CreateParticle(particleName, PATTACH_ABSORIGIN_FOLLOW, target)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	end
 end

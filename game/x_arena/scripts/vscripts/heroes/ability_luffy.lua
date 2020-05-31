@@ -59,26 +59,28 @@ function bvo_luffy_skill_1(keys)
 		ability.wrongMove = true
     	return
 	end
-end
+end --проверяй 1 скилл
 
 function bvo_luffy_skill_1_damage(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
+	
+	local multi_agi = ability:GetLevelSpecialValueFor("multi_agi", ability:GetLevel() - 1 )
 	local damage = ability:GetLevelSpecialValueFor("damage", ability:GetLevel() - 1 )
-	local damage_2nd = ability:GetLevelSpecialValueFor("damage_2nd", ability:GetLevel() - 1 )
-	local multi_2nd = ability:GetLevelSpecialValueFor("multi_2nd", ability:GetLevel() - 1 )
 
 	if ability.wrongMove then return end
 
 	local damageTable = {
-		victim = target,
-		attacker = caster,
-		damage = damage,
+		victim = target, --
+		attacker = caster, 
+		damage =damage + multi_agi * caster:GetAgility(),
 		damage_type = DAMAGE_TYPE_MAGICAL,
+
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	ability:ApplyDataDrivenModifier(caster, target, "bvo_luffy_skill_1_stun_modifier", {} )
 
 	if not caster:HasModifier("bvo_luffy_skill_4_modifier") and not caster:HasModifier("bvo_luffy_skill_4_perma_modifier") then return end
@@ -88,16 +90,21 @@ function bvo_luffy_skill_1_damage(keys)
 		local damageTable = {
 			victim = target,
 			attacker = caster,
-			damage = damage_2nd + ( multi_2nd * ability:GetLevel() ),
+			damage = multi * caster:GetAgility(),
 			damage_type = DAMAGE_TYPE_MAGICAL,
 		}
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	end
 end
 
 function bvo_luffy_skill_2_damage(keys)
 	local caster = keys.caster
 	local target = keys.target
+	local ability = keys.ability
+	local agi = caster:GetAgility()
+	local multi_agi = ability:GetLevelSpecialValueFor("multi_agi", ability:GetLevel() - 1 )		
+			
 	
 	local difference = caster:GetAbsOrigin() - target:GetAbsOrigin()
 	target.leap_direction = -difference:Normalized()
@@ -110,10 +117,11 @@ function bvo_luffy_skill_2_damage(keys)
 		local damageTable = {
 			victim = target,
 			attacker = caster,
-			damage = 125 + 75 * ability:GetLevel(),
+			damage = multi_agi * agi,
 			damage_type = DAMAGE_TYPE_MAGICAL,
 		}
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	end
 end
 
@@ -206,6 +214,8 @@ function bvo_luffy_skill_3_damage(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
+	local agi = caster:GetAgility()
+	local multi_agi = ability:GetLevelSpecialValueFor("multi_agi", ability:GetLevel() - 1 )		
 	
 	if target ~= ability.dummy then
 		ability:ApplyDataDrivenModifier(caster, target, "bvo_luffy_skill_3_stun_modifier", {duration=0.1} )
@@ -216,11 +226,11 @@ function bvo_luffy_skill_3_damage(keys)
 	local damageTable = {
 		victim = target,
 		attacker = caster,
-		damage = 2 * caster:GetLevel() * ability:GetLevel(),
+		damage = multi_agi * agi,
 		damage_type = DAMAGE_TYPE_MAGICAL,
 	}
-
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_luffy_skill_4(keys)
@@ -297,21 +307,36 @@ function bvo_luffy_skill_5(keys)
 	end)
 end
 
-function bvo_luffy_skill_5_damage(keys)
-	local caster = keys.caster
-	local target = keys.target
-	local min = keys.min
-	local max = keys.max
+--level_multi_min_int
+--level_multi_max_agi
 
-	local multi = RandomInt(min, max)
+function bvo_luffy_skill_5_damage(keys)
+	local ability = keys.ability
+	local caster = keys.caster
+	local target = keys.target  
+	local min = caster:GetIntellect() * 0.01-- рандом мин
+	local max = caster:GetAgility() * 0.01
+	local level_multi_min_int = ability:GetLevelSpecialValueFor("level_multi_min_int", ability:GetLevel() - 1 )	
+	local level_multi_max_agi = ability:GetLevelSpecialValueFor("level_multi_max_agi", ability:GetLevel() - 1 )	
+
+	
+	
+	local proc_min = min * level_multi_min_int
+	local proc_max = max  * level_multi_max_agi
+	
+
+
+	local multi = RandomInt(proc_min, proc_max)
+--срабатывает рандом
 
 	local damageTable = {
 		victim = target,
 		attacker = caster,
-		damage = caster:GetLevel() * multi,
+		damage = multi, --агила * на рандомное число в диа
 		damage_type = DAMAGE_TYPE_MAGICAL,
 	}
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_luffy_skill_5_mini(keys)

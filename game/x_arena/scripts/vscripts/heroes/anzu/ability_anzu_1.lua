@@ -2,6 +2,8 @@ function bvo_anzu_skill_1( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
+	local multi = keys.multi
+	local int = caster:GetIntellect()
 	local percent = ability:GetLevelSpecialValueFor("percent", ability:GetLevel() - 1 ) / 100
 	local multiplier = ability:GetLevelSpecialValueFor("multiplier", ability:GetLevel() - 1 )
 	local gold_damage = ability:GetLevelSpecialValueFor("gold_damage", ability:GetLevel() - 1 )
@@ -22,20 +24,22 @@ function bvo_anzu_skill_1( keys )
 		local damageTable = {
 			victim = target,
 			attacker = caster,
-			damage = gold_gain,
+			damage = gold_gain + multi * int,
 			damage_type = DAMAGE_TYPE_PURE,
 		}
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	else
 		gold_gain = target:GetGoldBounty() * multiplier * gold_damage
 
 		local damageTable = {
 			victim = target,
 			attacker = caster,
-			damage = gold_gain,
+			damage = gold_gain + multi * int,
 			damage_type = DAMAGE_TYPE_PURE,
 		}
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	end
 
 	--aoe damage
@@ -58,6 +62,7 @@ function bvo_anzu_skill_1( keys )
 				damage_type = DAMAGE_TYPE_PURE,
 			}
 			ApplyDamage(damageTable)
+			SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 		end
 	end
 end

@@ -48,18 +48,20 @@ function bvo_mihawk_skill_5(keys)
 		
 		caster:EmitSound("Hero_Antimage.Attack")
 		local fxIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta_blood.vpcf", PATTACH_CUSTOMORIGIN, caster )
+		local str = caster:GetStrength()
 		ParticleManager:SetParticleControl( fxIndex, 0, caster:GetAbsOrigin() )
 		ParticleManager:SetParticleControl( fxIndex, 1, target:GetAbsOrigin() )
 
-		caster:RemoveModifierByName("bvo_mihawk_skill_5_modifier")
+		caster:RemoveModifierByName("bvo_mihawk_skill_5_modifier") 
 		target:RemoveModifierByName("bvo_mihawk_skill_5_modifier_enemy")
 		caster:MoveToTargetToAttack(target)
 		local damageTable = {
 			victim = target,
 			attacker = caster,
-			damage = 2000 + (caster:GetBaseStrength() * multi),
+			damage = 2000 + (str * multi),
 			damage_type = DAMAGE_TYPE_PHYSICAL,
 		}
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	end)
 end

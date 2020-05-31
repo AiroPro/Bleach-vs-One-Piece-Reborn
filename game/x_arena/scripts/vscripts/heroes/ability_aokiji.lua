@@ -252,6 +252,22 @@ function DistancePointSegment( p, v, w )
 	end
 end
 
+function bvo_aokiji_skill_1(keys)
+	local caster = keys.caster
+    local target = keys.target
+	local str = caster:GetStrength()
+	local multi = keys.multi
+
+    local damageTable = {
+		victim = target,
+		attacker = caster,
+		damage = str * multi,
+		damage_type = DAMAGE_TYPE_PHYSICAL,
+	}
+	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
+end
+
 --skill 3
 function bvo_aokiji_skill_3(keys)
 	local caster = keys.caster
@@ -284,6 +300,7 @@ function bvo_aokiji_skill_3_damage(keys)
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	--
 	target:EmitSound("Hero_Ancient_Apparition.ColdFeetTick")
 end
@@ -340,10 +357,11 @@ function bvo_aokiji_skill_5_cast(keys)
 					local damageTable = {
 						victim = target,
 						attacker = caster,
-						damage = 2000 + multi * caster:GetLevel(),
+						damage = 2000 + multi * caster:GetStrength(),
 						damage_type = DAMAGE_TYPE_PHYSICAL,
 					}
 					ApplyDamage(damageTable)
+					SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 					ability:ApplyDataDrivenModifier(caster, target, "bvo_aokiji_skill_5_freeze_modifier", {duration=4.0} )
 					table.insert(ability.hitUnits, target)
 				end

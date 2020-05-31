@@ -96,6 +96,7 @@ function bvo_rem_skill_5_torrent( keys )
 					damage_type = DAMAGE_TYPE_MAGICAL,
 				}
 				ApplyDamage(damageTable)
+				SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 			end
 			--Kill particle
 			ParticleManager:DestroyParticle( tablefxIndex[i], false )

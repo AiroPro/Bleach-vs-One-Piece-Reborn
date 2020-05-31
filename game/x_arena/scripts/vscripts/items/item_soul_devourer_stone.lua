@@ -18,7 +18,7 @@ function item_soul_devourer_stone(keys)
 		victim = target,
 		attacker = caster,
 		damage = damage,
-		damage_type = DAMAGE_TYPE_PURE,
+		damage_type = DAMAGE_TYPE_MAGICAL,
 	}
 
 	ApplyDamage(damageTable)
@@ -67,7 +67,7 @@ function item_soul_devourer_stone_chain(caster, target, jumps, damage, hit_units
 					victim = unit,
 					attacker = caster,
 					damage = damage,
-					damage_type = DAMAGE_TYPE_PURE,
+					damage_type = DAMAGE_TYPE_MAGICAL,
 				}
 
 				ApplyDamage(damageTable)

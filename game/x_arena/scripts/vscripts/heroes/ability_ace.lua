@@ -1,6 +1,6 @@
 require('timers')
 
-function bvo_ace_skill_0(keys)
+function bvo_ace_skill_0(keys) 
 	local caster = keys.caster
 	local attacker = keys.attacker
 
@@ -12,6 +12,7 @@ function bvo_ace_skill_0(keys)
 			damage_type = DAMAGE_TYPE_PURE,
 		}
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	end
 end
 
@@ -29,6 +30,7 @@ function bvo_ace_skill_2(keys)
 		damage_type = DAMAGE_TYPE_PURE,
 	}
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_ace_skill_3(keys)
@@ -47,15 +49,16 @@ function bvo_ace_skill_3_damage(keys)
 	local target = keys.target
 	local ability = keys.ability
 	local damage = ability:GetLevelSpecialValueFor("damage", ability:GetLevel() - 1 )
-	local multi = ability:GetLevelSpecialValueFor("lvl_multi", ability:GetLevel() - 1 )
+	local multi = ability:GetLevelSpecialValueFor("agi_multi", ability:GetLevel() - 1 )
 
 	local damageTable = {
 		victim = target,
 		attacker = caster,
-		damage = damage + (caster:GetLevel() * multi),
+		damage = damage + (caster:GetAgility() * multi),
 		damage_type = DAMAGE_TYPE_PURE,
 	}
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_ace_skill_4_damage(keys)
@@ -76,23 +79,25 @@ function bvo_ace_skill_4_damage(keys)
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_ace_skill_5(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	local multi = ability:GetLevelSpecialValueFor("lvl_multi", ability:GetLevel() - 1 )
+	local multi = ability:GetLevelSpecialValueFor("get_agi", ability:GetLevel() - 1 )
 
 	if not caster:IsAlive() then return end
 
 	local damageTable = {
 		victim = target,
 		attacker = caster,
-		damage = 3000 + (caster:GetLevel() * multi),
+		damage = 3000 + (caster:GetAgility() * multi),
 		damage_type = DAMAGE_TYPE_PURE,
 	}
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_ace_skill_5_dummy(keys)

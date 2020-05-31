@@ -31,10 +31,33 @@ function Blink(keys)
 	end
 end
 
+function bvo_hollow_skill_1(keys)
+    local caster = keys.caster
+    local target = keys.target
+    local multi = keys.multi
+
+ 
+	local str = caster:GetStrength()
+
+	local damageTable = {
+		victim = target,
+		attacker = caster,
+		damage = str * multi,
+		damage_type = DAMAGE_TYPE_MAGICAL,
+	}
+
+	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
+end
+
 function bvo_hollow_skill_2(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local damage = keys.damage
+	local multi = keys.multi
+
+ 
+	local str = caster:GetStrength()
 
 	local targetPos = target:GetAbsOrigin()
 
@@ -49,7 +72,7 @@ function bvo_hollow_skill_2(keys)
 	local damageTable = {
 		victim = target,
 		attacker = caster,
-		damage = damage + 110 * level,
+		damage = damage + str * multi ,
 		damage_type = DAMAGE_TYPE_PHYSICAL,
 	}
 	ApplyDamage(damageTable)
@@ -57,6 +80,7 @@ function bvo_hollow_skill_2(keys)
 	caster:MoveToTargetToAttack(target)
 	caster:StartGesture(ACT_DOTA_ATTACK)
 	caster:EmitSound("Hero_PhantomLancer.SpiritLance.Impact")
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_hollow_skill_3(keys)
@@ -114,6 +138,11 @@ function Leap( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local target = keys.target
+	local multi = keys.multi
+	local damage = keys.damage
+
+ 
+	local str = caster:GetStrength()
 
 	-- Clears any current command and disjoints projectiles
 	caster:Stop()
@@ -129,6 +158,15 @@ function Leap( keys )
 	ability.leap_speed = 1500 * 1/30
 	ability.leap_traveled = 0
 	ability.leap_z = 0
+	
+	local damageTable = {
+		victim = target,
+		attacker = caster,
+		damage = damage + str * multi,
+		damage_type = DAMAGE_TYPE_PHYSICAL,
+	}
+	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 --[[Moves the caster on the horizontal axis until it has traveled the distance]]
@@ -221,6 +259,7 @@ function bvo_hollow_skill_5_jump (caster, jumps, target)
 				damage_type = DAMAGE_TYPE_PHYSICAL,
 			}
 			ApplyDamage(damageTable)
+			SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 
 			target = unit
 			break

@@ -24,3 +24,22 @@ function bvo_ulquiorra_skill_1(keys)
 	ParticleManager:SetParticleControl( particle, 2, Vector(radius, 0, 0) )
 	ParticleManager:SetParticleControl( particle, 3, Vector(radius, 0, 0) )
 end
+
+
+function bvo_ulquiorra_skill_1_dmg(keys)
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local multi = keys.multi
+	local agi = caster:GetAgility()
+
+	local damageTable = {
+		victim = target,
+		attacker = caster,
+		damage = multi * agi,
+		damage_type = DAMAGE_TYPE_PHYSICAL,
+	}
+
+	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
+end

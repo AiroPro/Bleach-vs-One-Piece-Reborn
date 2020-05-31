@@ -30,16 +30,19 @@ function bvo_toshiro_skill_1(keys)
 	local target = keys.target
 	local ability = keys.ability
 	local dur = 1.5
+	local multi = keys.multi
+	local agi = caster:GetAgility()
 
 	if caster:HasModifier("bvo_toshiro_skill_3_modifier") or caster:HasModifier("bvo_toshiro_skill_3_perma_modifier") then
 		local damageTable = {
 			victim = target,
 			attacker = caster,
-			damage = 125,
+			damage = multi * agi,
 			damage_type = DAMAGE_TYPE_MAGICAL,
 		}
 		dur = dur + 1
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	end
 	ability:ApplyDataDrivenModifier(caster, target, "bvo_toshiro_skill_1_slow", {duration=dur} )
 end
@@ -67,16 +70,19 @@ function bvo_toshiro_skill_2_damage(keys)
 	local target = keys.target
 	local damage_min = keys.damage_min
 	local damage_max = keys.damage_max
+	local multi = keys.multi
+	local agi = caster:GetAgility()
 
 	local damage = RandomInt(damage_min, damage_max)
 	local damageTable = {
 		victim = target,
 		attacker = caster,
-		damage = damage,
+		damage =  multi * agi,
 		damage_type = DAMAGE_TYPE_MAGICAL,
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_toshiro_skill_2_bankai(keys)
@@ -231,6 +237,7 @@ function bvo_toshiro_skill_4_damage(keys)
 	}
 
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 --[[Moves the caster on the horizontal axis until it has traveled the distance]]
@@ -270,17 +277,20 @@ function bvo_toshiro_skill_5_main(keys)
 	local target = keys.target
 	local ability = keys.ability
 	local multi = keys.multi
+	local GetAgilitytarget = target:GetAgility()
+	local GetAgilitylcaster = caster:GetAgility()
 	ability.target = target
 
 	local damageTable = {
 		victim = target,
 		attacker = caster,
-		damage = 2500 + multi * caster:GetLevel(),
+		damage = 2500 + (multi * (GetAgilitytarget + GetAgilitylcaster)),
 		damage_type = DAMAGE_TYPE_PHYSICAL,
 	}
 	ApplyDamage(damageTable)
-
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	--particle dummy
+	
 	local dummy = CreateUnitByName("npc_dummy_unit", target:GetAbsOrigin(), false, nil, nil, caster:GetTeam())
 	dummy:AddAbility("custom_point_dummy")
 	local abl = dummy:FindAbilityByName("custom_point_dummy")
@@ -303,13 +313,17 @@ function bvo_toshiro_skill_5_damage(keys)
 	local target = keys.target
 	local ability = keys.ability
 	local multi = keys.multi
+	local GetAgilitytarget = target:GetAgility()
+	local GetAgilitylcaster = caster:GetAgility()
+	ability.target = target
 	if ability.target == target then return end
 
 	local damageTable = {
 		victim = target,
 		attacker = caster,
-		damage = 1250 + (multi / 2) * caster:GetLevel(),
+		damage = 2500 + (multi * (GetAgilitytarget + GetAgilitylcaster)),
 		damage_type = DAMAGE_TYPE_PHYSICAL,
 	}
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end

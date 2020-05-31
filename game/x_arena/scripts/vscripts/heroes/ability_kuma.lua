@@ -42,12 +42,13 @@ function bvo_kuma_skill_1_damage(keys)
 		damage_type = DAMAGE_TYPE_MAGICAL,
 	}
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_kuma_skill_2(params)
 	local damage = params.damage
 	local attacker = params.attacker
-	local hero = params.caster
+	local hero = params.caste
 	local ability = params.ability
 	local return_damage_percent = 15 / 100
 
@@ -164,6 +165,7 @@ function bvo_kuma_skill_3_damage(keys)
 		damage_type = DAMAGE_TYPE_MAGICAL,
 	}
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_kuma_skill_4_init(keys)
@@ -211,6 +213,7 @@ function bvo_kuma_skill_4_damage(keys)
 				damage_type = DAMAGE_TYPE_PURE,
 			}
 			ApplyDamage(damageTable)
+			SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 		end
 	end
 end
@@ -277,5 +280,6 @@ function bvo_kuma_skill_5_damage(keys)
 		damage_type = DAMAGE_TYPE_PHYSICAL,
 	}
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 	ability:ApplyDataDrivenModifier(caster, target, "bvo_kuma_skill_5_debuff_modifier", {duration=3.0} )
 end

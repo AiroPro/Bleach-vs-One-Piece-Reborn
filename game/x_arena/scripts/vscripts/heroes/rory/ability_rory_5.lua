@@ -41,6 +41,7 @@ function bvo_rory_skill_5(keys)
 			damage_type = DAMAGE_TYPE_PURE,
 		}
 		ApplyDamage(damageTable)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 
 		ability:ApplyDataDrivenModifier(caster, target, "bvo_rory_skill_5_stun_modifier", {duration=1.0})
 	end)

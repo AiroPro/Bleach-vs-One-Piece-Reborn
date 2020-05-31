@@ -13,6 +13,8 @@ function bvo_anzu_skill_3_wake( keys )
 	local caster = keys.caster
 	local attacker = keys.attacker
 	local ability = keys.ability
+	local multi = keys.multi
+	local int = caster:GetIntellect()
 	local damage_per_health = ability:GetLevelSpecialValueFor("damage_per_health", (ability:GetLevel() - 1))
 
 	if not attacker:IsHero() then return end
@@ -24,10 +26,11 @@ function bvo_anzu_skill_3_wake( keys )
 	local damageTable = {
 		victim = attacker,
 		attacker = caster,
-		damage = damage * damage_per_health,
+		damage = damage * damage_per_health + multi * int,
 		damage_type = DAMAGE_TYPE_PURE,
 	}
 	ApplyDamage(damageTable)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, caster, ApplyDamage(damageTable) , nil)
 end
 
 function bvo_anzu_skill_3_stop( keys )
